@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Telugu Movies</title>
+<style>
+body {
+    background: url("theater.jpeg") no-repeat center fixed;
+    background-size: cover;
+    margin:0;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+header {
+    background: #c0392b;
+    padding: 15px;
+   font-size: 24px;
+   text-align: center;
+}
+.movie-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:20px;
+    padding:30px;
+}
+.movie-card {
+    position:relative;
+    overflow:hidden;
+    border-radius:8px;
+    transition:transform 0.3s;
+}
+.movie-card:hover{
+    transform: scale(1.05);
+}
+.movie-card img {
+    width: 100%;
+    height: 220px;
+    border-radius: 8px;
+}
+.movie-info{
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;  
+}
+.admin-box {
+    margin-top: 5px;
+}
+input {
+    width: 50px;
+    padding: 4px;
+    border-radius: 5px;
+    border: none;
+}
+button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover{
+    transform: scale(1.05);
+}
+.back{
+    position:fixed;
+    top:20px;
+    left:20px;
+    z-index:1000;
+}
+
+.back button{
+    padding:8px 16px;
+    background:#e50914;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+}
+.movie{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 200px;
+}
+.movie button{
+    padding:20px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="back">
+<button onclick="back()">←Back</button>
+</div>
+<div class="movie">
+    <button onclick="addmovie()">Add movies</button>
+    <button onclick="loadmovie()">Load movies</button>
+</div>
+<div class="movie-grid" id="movieGrid"></div>
+<script>
+function back(){
+    window.location.href="homepage.html";
+}
+function addmovie(){
+    setTimeout(function(){
+        window.location.href="addmovies.html";
+    },1000)    
+}
+function loadmovie(){
+    setTimeout(function(){
+        window.location.href="loadmovies.html";
+    },1000)
+}
+</script>
+</body>
+</html>

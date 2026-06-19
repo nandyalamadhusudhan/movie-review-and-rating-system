@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Telugu Movies</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#111;
+    color:white;
+}
+
+header{
+    background:#c0392b;
+    padding:15px;
+    font-size:24px;
+    text-align:center;
+}
+
+.movie-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:15px;
+    padding:20px;
+}
+
+.movie-card{
+    background:#222;
+    padding:10px;
+    border-radius:8px;
+    text-align:center;
+    cursor:pointer;
+    overflow:hidden;
+    transition: transform 0.35s ease;
+    text-transform: capitalize;
+}
+
+.movie-card:hover{
+    transform: scale(1.1) translateY(-10px);
+    border:2px solid #e50914;
+}
+
+.movie-card img{
+    width:100%;
+    border-radius:6px;
+}
+
+.movie-info{
+    margin-top:8px;
+}
+
+.back{
+    position:fixed;
+    top:20px;
+    left:5px;
+    z-index:1000;
+}
+
+.back button{
+    padding:8px 16px;
+    background:rgb(207,171,240);
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Back Button -->
+<div class="back">
+<button onclick="goBack()">← Back</button>
+</div>
+
+<header>Telugu Movies</header>
+
+<div class="movie-grid" id="movieGrid"></div>
+
+<script>
+
+/* Load movies from backend */
+
+async function loadMovies(){
+
+    const res = await fetch("http://localhost:3000/movies");
+    const movies = await res.json();
+
+    const grid = document.getElementById("movieGrid");
+    grid.innerHTML = "";
+
+    movies.forEach((m)=>{
+
+        grid.innerHTML += `
+        <div class="movie-card" onclick="openTrailer('${m.link}')">
+            <img src="${m.image}">
+            <div class="movie-info">
+                <div>${m.title}</div>
+                <div>⭐ ${m.rating}/5</div>
+            </div>
+        </div>
+        `;
+
+    });
+
+}
+
+/* Open trailer */
+
+function openTrailer(link){
+
+    window.open(link,"_blank");
+
+}
+
+/* Back button */
+
+function goBack(){
+    window.history.back();
+}
+
+/* Run on page load */
+
+loadMovies();
+
+</script>
+
+</body>
+</html>

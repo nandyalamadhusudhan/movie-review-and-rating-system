@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Basic Registration Page">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Registration Form</title>
+
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("regimg.jpeg");
+background-size:cover;
+background-position:center;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+animation: pagefade 1.5s ease;
+}
+@keyframes pagefade{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
+.container{
+width:350px;
+background:rgba(0,0,0,0.7);
+padding:30px;
+border-radius:15px;
+color:white;
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.input-box{
+margin-bottom:15px;
+}
+
+.input-box input{
+width:100%;
+padding:10px;
+border:none;
+border-radius:5px;
+outline:none;
+}
+
+.password-box{
+position:relative;
+}
+
+.password-box input{
+width:100%;
+padding:10px;
+border:none;
+border-radius:5px;
+outline:none;
+}
+
+.password-box i{
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+color:black;
+}
+
+.checkbox{
+margin-top:10px;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:15px;
+border:none;
+border-radius:20px;
+background:#007BFF;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:red;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Register Here</h2>
+
+<form id="registerForm">
+
+<div class="input-box">
+<input type="text" id="name" placeholder="First Name" required>
+</div>
+
+<div class="input-box">
+<input type="text" placeholder="Last Name" required>
+</div>
+
+<div class="input-box">
+<input type="email" id="email" placeholder="Email Address" required>
+</div>
+
+<div class="input-box password-box">
+<input type="password" id="password" placeholder="Enter Password" required>
+<i class='bx bx-show'></i>
+</div>
+
+<div class="input-box password-box">
+<input type="password" placeholder="Confirm Password" required>
+<i class='bx bx-show'></i>
+</div>
+
+<div class="checkbox">
+<input type="checkbox"> I agree to Terms & Conditions
+</div>
+
+<button type="submit">
+Submit
+</button>
+</form>
+
+</div>
+
+<script>
+
+document.querySelectorAll(".password-box i").forEach(icon => {
+
+icon.addEventListener("click", function(){
+
+let input = this.previousElementSibling;
+
+if(input.type === "password"){
+input.type = "text";
+this.classList.replace("bx-show","bx-hide");
+}else{
+input.type = "password";
+this.classList.replace("bx-hide","bx-show");
+}
+
+});
+
+});
+document.getElementById("registerForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+fetch("http://localhost:3000/register",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+name:document.getElementById("name").value,
+email:document.getElementById("email").value,
+password:document.getElementById("password").value
+})
+})
+.then(res=>res.text())
+.then(data=>alert(data));
+
+setTimeout(function(){
+window.location.href="login.html";
+},4000);
+});
+
+
+</script>
+
+</body>
+</html>

@@ -8,12 +8,15 @@ const User = require("./models/user");
 const Movie = require("./models/movie");
 const Review = require("./models/review");
 const app = express();
+require("dotenv").config();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+const port=process.env.PORT;
+const mongourl=process.env.MONGOURL;
 /*backend connection*/
-mongoose.connect("mongodb://localhost:27017/moviereview")
+mongoose.connect(mongourl)
 .then(()=>console.log("MongoDB Connected"))
 .catch(err=>console.log(err));
 /* Register */
@@ -73,6 +76,6 @@ app.get("/reviews/:movieId", async(req,res)=>{
     const reviews = await Review.find({movieId:req.params.movieId});
     res.json(reviews);
 });
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log("Server running on port 3000");
 });

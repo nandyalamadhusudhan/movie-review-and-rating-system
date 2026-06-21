@@ -1,116 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Telugu Movies</title>
-<style>
-body {
-    background: url("theater.jpeg") no-repeat center fixed;
-    background-size: cover;
-    margin:0;
-    font-family: Arial, sans-serif;
-    color: white;
-}
-header {
-    background: #c0392b;
-    padding: 15px;
-   font-size: 24px;
-   text-align: center;
-}
-.movie-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-    gap:20px;
-    padding:30px;
-}
-.movie-card {
-    position:relative;
-    overflow:hidden;
-    border-radius:8px;
-    transition:transform 0.3s;
-}
-.movie-card:hover{
-    transform: scale(1.05);
-}
-.movie-card img {
-    width: 100%;
-    height: 220px;
-    border-radius: 8px;
-}
-.movie-info{
-    margin-top: 5px;
-    display: flex;
-    justify-content: space-between;  
-}
-.admin-box {
-    margin-top: 5px;
-}
-input {
-    width: 50px;
-    padding: 4px;
-    border-radius: 5px;
-    border: none;
-}
-button {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button:hover{
-    transform: scale(1.05);
-}
-.back{
-    position:fixed;
-    top:20px;
-    left:20px;
-    z-index:1000;
-}
-
-.back button{
-    padding:8px 16px;
-    background:#e50914;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image" href="mf.jpeg">
+    <title>Movie Review and Rating System</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+            font-family: 'poppins',sans-serif;
+        }
+        body{
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("ir.jpeg");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding:20px 30px;
+        }
+        .nav{
+            display: flex;
+            gap:20px;
+        }
+        h1{
+            padding-left: 30px;
+            font-size: 50px;
+            color:yellow;
+        }
+        button{
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: cadetblue;
+            font-size: 20px;
+            font-weight: 600;
+            cursor:pointer;
+        }
+        button:hover{
+            background-color: aqua;
+        }
+        .nothover:hover{
+            background-color: cadetblue;
+        }
+        .logo{
+            width:60px;
+            height:50px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+        .main{
     color:white;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:14px;
+    text-align:center;
+    font-size:30px;
+    font-weight:600;
+    margin-top:200px;
+    animation: fadeIn 1s ease-in-out;
+              }
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform: translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform: translateY(0);
+    }
 }
-.movie{
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 200px;
-}
-.movie button{
-    padding:20px;
-    cursor:pointer;
-}
-</style>
+    </style>
 </head>
 <body>
-<div class="back">
-<button onclick="back()">←Back</button>
-</div>
-<div class="movie">
-    <button onclick="addmovie()">Add movies</button>
-    <button onclick="loadmovie()">Load movies</button>
-</div>
-<div class="movie-grid" id="movieGrid"></div>
-<script>
-function back(){
-    window.location.href="homepage.html";
-}
-function addmovie(){
+    <div class="header">
+        <h1><img src="mf.jpeg" class="logo">Movies</h1>
+        <div class="nav">
+            <button class="nothover" type="button">Home</button>
+            <button type="button" onclick="login()">Login</button>
+            <button type="button" onclick="register()">Register</button>
+        </div>
+        </div>
+    <div class="main">
+            <P>Welcome to the Movie Review and Rating System, your one-stop platform to explore movies and share your opinions.
+                Discover honest reviews, user ratings, and detailed information about your favorite films.
+                Rate, review, and help others choose the perfect movie to watch.</P>
+    </div>
+   <script>
+    alert("If your new to the website,please register first and then login to access the features of the website");
+function login(){
     setTimeout(function(){
-        window.location.href="addmovies.html";
-    },1000)    
+        window.location.href = "login.html";
+    }, 1000)
+   
 }
-function loadmovie(){
+
+function register(){
     setTimeout(function(){
-        window.location.href="loadmovies.html";
+        window.location.href = "register.html";
     },1000)
+    
 }
 </script>
 </body>

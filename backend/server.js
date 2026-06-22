@@ -17,8 +17,12 @@ const port=process.env.PORT;
 const mongourl=process.env.MONGOURL;
 /*backend connection*/
 mongoose.connect(mongourl)
-.then(()=>console.log("MongoDB Connected"))
-.catch(err=>console.log(err));
+.then(() => {
+    console.log("MongoDB Connected Successfully");
+})
+.catch((err) => {
+    console.error("MongoDB Error:", err);
+});
 /* Register */
 app.post("/register", async(req,res)=>{
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -77,5 +81,5 @@ app.get("/reviews/:movieId", async(req,res)=>{
     res.json(reviews);
 });
 app.listen(port,()=>{
-    console.log("Server running on port 3000");
+    console.log(`Server running on port ${port}`);
 });

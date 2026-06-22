@@ -88,7 +88,7 @@ header{
 
 async function loadMovies(){
 
-    const res = await fetch("http://localhost:3000/movies");
+    const res = await fetch("https://movie-review-and-rating-system.onrender.com/movies");
     const movies = await res.json();
 
     const grid = document.getElementById("movieGrid");
